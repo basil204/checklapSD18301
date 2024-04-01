@@ -12,6 +12,7 @@
   <div class="form-group">
     <input type="text" class="form-control" id="searchInput" placeholder="Search by Student ID">
   </div>
+  <p>Tổng Sv đã nộp bài: <span id="totalStudentIDs"></span></p>
   <table id="data-table" class="table table-striped">
     <thead>
      
@@ -32,14 +33,17 @@ $(document).ready(function(){
   function parseCSVData(data) {
     var rows = data.split("\n");
     var table = $('#data-table tbody');
-    
+    var totalStudentIDs = 0; // Initialize total count
+
     for (var i = 0; i < rows.length; i++) {
       var cells = rows[i].split(",");
       if (cells.length >= 3) {
         var rowData = "<tr><td>" + cells[0] + "</td><td>" + cells[1] + "</td></tr>";
         table.append(rowData);
+        totalStudentIDs++; // Increment count for each row
       }
     }
+    $('#totalStudentIDs').text(totalStudentIDs); // Display total count
   }
 
   // Fetch data from Google Sheets CSV
