@@ -15,7 +15,11 @@
   <p>Tổng Sv đã nộp bài: <span id="totalStudentIDs"></span></p>
   <table id="data-table" class="table table-striped">
     <thead>
-     
+      <tr>
+        <th>#</th>
+        <th>Student ID</th>
+        <th>Name</th>
+      </tr>
     </thead>
     <tbody>
       <!-- Data will be inserted here -->
@@ -35,15 +39,15 @@ $(document).ready(function(){
     var table = $('#data-table tbody');
     var totalStudentIDs = 0; // Initialize total count
 
-    for (var i = 0; i < rows.length; i++) {
+    for (var i = 1; i < rows.length; i++) { // Start loop from 1 to skip header row
       var cells = rows[i].split(",");
       if (cells.length >= 3) {
-        var rowData = "<tr><td>" + cells[0] + "</td><td>" + cells[1] + "</td></tr>";
+        var rowData = "<tr><td>" + i + "</td><td>" + cells[0] + "</td><td>" + cells[1] + "</td></tr>";
         table.append(rowData);
         totalStudentIDs++; // Increment count for each row
       }
     }
-    $('#totalStudentIDs').text(totalStudentIDs -1); // Display total count
+    $('#totalStudentIDs').text(totalStudentIDs); // Display total count
   }
 
   // Fetch data from Google Sheets CSV
