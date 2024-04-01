@@ -30,6 +30,7 @@
   <table id="data-table" class="table table-striped">
     <thead>
       <tr>
+        <th>#</th>
         <th>Student ID</th>
         <th>Name</th>
       </tr>
@@ -51,10 +52,10 @@ $(document).ready(function(){
     var rows = data.split("\n");
     var table = $('#data-table tbody');
     
-    for (var i = 0; i < rows.length; i++) {
+    for (var i = 1; i < rows.length; i++) { // Start from 1 to skip header row
       var cells = rows[i].split(",");
       if (cells.length >= 3) {
-        var rowData = "<tr><td>" + cells[0] + "</td><td>" + cells[1] + "</td></tr>";
+        var rowData = "<tr><td>" + i + "</td><td>" + cells[0] + "</td><td>" + cells[1] + "</td></tr>";
         table.append(rowData);
       }
     }
