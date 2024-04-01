@@ -5,21 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Google Sheets Data</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-<!-- Additional CSS -->
-<style>
-  /* Customize search input */
-  #searchInput {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-  }
-
-  /* Style table headings */
-  #data-table th {
-    font-weight: bold;
-  }
-</style>
 </head>
 <body>
 
@@ -30,6 +15,7 @@
   <table id="data-table" class="table table-striped">
     <thead>
       <tr>
+        <th>#</th>
         <th>Student ID</th>
         <th>Name</th>
       </tr>
@@ -54,7 +40,7 @@ $(document).ready(function(){
     for (var i = 0; i < rows.length; i++) {
       var cells = rows[i].split(",");
       if (cells.length >= 3) {
-        var rowData = "<tr><td>" + cells[0] + "</td><td>" + cells[1] + "</td></tr>";
+        var rowData = "<tr><td>" + (i + 1) + "</td><td>" + cells[0] + "</td><td>" + cells[1] + "</td></tr>";
         table.append(rowData);
       }
     }
