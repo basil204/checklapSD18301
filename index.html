@@ -14,11 +14,7 @@
   </div>
   <table id="data-table" class="table table-striped">
     <thead>
-      <tr>
-        <th>#</th>
-        <th>Student ID</th>
-        <th>Name</th>
-      </tr>
+     
     </thead>
     <tbody>
       <!-- Data will be inserted here -->
@@ -40,7 +36,7 @@ $(document).ready(function(){
     for (var i = 0; i < rows.length; i++) {
       var cells = rows[i].split(",");
       if (cells.length >= 3) {
-        var rowData = "<tr><td>" + (i + 1) + "</td><td>" + cells[0] + "</td><td>" + cells[1] + "</td></tr>";
+        var rowData = "<tr><td>" + cells[0] + "</td><td>" + cells[1] + "</td></tr>";
         table.append(rowData);
       }
     }
