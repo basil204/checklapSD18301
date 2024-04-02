@@ -1,0 +1,44 @@
+  /* Custom styles */
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .jumbotron {
+    background-image: url('https://img.upanh.tv/2024/04/02/pexels-jorge-jesus-614117.jpg');
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 100px 0;
+  }
+  .footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  .service-img {
+  width: 300px;
+  height: 200px;
+}
+.service-img-container {
+  position: relative;
+  overflow: hidden;
+}
+.service-img-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.service-img-container .btn-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.service-img-container:hover .btn-overlay {
+  opacity: 1;
+}
