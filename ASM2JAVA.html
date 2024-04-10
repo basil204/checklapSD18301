@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Sheets Data</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+  <div class="form-group">
+    <input type="text" class="form-control" id="searchInput" placeholder="Search by Student ID">
+  </div>
+  <p>Total Students Submitted: <span id="totalStudentIDs"></span></p>
+  <table id="data-table" class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Timestamp</th>
+        <th>Email address</th>
+        <th>Họ Và Tên</th>
+        <th>Mã Sinh Viên</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data will be inserted here -->
+    </tbody>
+  </table>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  // URL of your Google Sheets CSV
+  var csvURL = "https://docs.google.com/spreadsheets/d/1fLeanMU_fAq4Jb6Ow1qGsS01I6qDmlwv1pw3-jm7ipw/export?format=csv&id=1fLeanMU_fAq4Jb6Ow1qGsS01I6qDmlwv1pw3-jm7ipw&gid=1658394845";
+  
+  // Function to parse CSV data
+  function parseCSVData(data) {
+    var rows = data.split("\n");
+    var table = $('#data-table tbody');
+    var totalStudentIDs = 0; // Initialize total count
+
+    for (var i = 1; i < rows.length; i++) { // Start loop from 1 to skip header row
+      var cells = rows[i].split(",");
+      if (cells.length >= 4) { // Check if there are at least 4 columns
+        var rowData = "<tr><td>" + i + "</td><td>" + cells[0] + "</td><td>" + cells[1] + "</td><td>" + cells[2] + "</td><td>" + cells[3] + "</td></tr>";
+        table.append(rowData);
+        totalStudentIDs++; // Increment count for each row
+      }
+    }
+    $('#totalStudentIDs').text(totalStudentIDs); // Display total count
+  }
+
+  // Fetch data from Google Sheets CSV
+  $.get(csvURL, function(data) {
+    parseCSVData(data);
+  });
+
+  // Search functionality
+  $('#searchInput').on('keyup', function() {
+    var searchText = $(this).val().toLowerCase();
+    $('#data-table tbody tr').filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1)
+    });
+  });
+});
+</script>
+
+</body>
+</html>
